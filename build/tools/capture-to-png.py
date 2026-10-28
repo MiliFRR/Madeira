@@ -3,7 +3,7 @@
 
 Pull the capture directory from the phone first:
   xcrun devicectl device copy from --device <UDID> --source Documents/capture \\
-      --destination /tmp/capture --domain-type appDataContainer --domain-identifier com.willfaust.madeora
+      --destination /tmp/capture --domain-type appDataContainer --domain-identifier com.milifrr.madeira
 
 Then:  python3 build/tools/capture-to-png.py /tmp/capture [outdir]
 

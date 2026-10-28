@@ -6,6 +6,13 @@
 	<array>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER).download.*</string>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER).pairing.*</string>
+		<!-- Sideloadly appends the signing team ID to a sideloaded bundle id. -->
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).23ZSFW6HS9.download.*</string>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).23ZSFW6HS9.pairing.*</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>processing</string>
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>

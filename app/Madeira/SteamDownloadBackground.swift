@@ -13,8 +13,10 @@ import UserNotifications
 // starts, lets Madeira keep running in the background for the whole queue; iOS
 // shows its own progress UI for it (title, game, percentage, a cancel control),
 // fed from the downloader's byte counts. Its identifier is
-// "<bundle id>.download.queue", permitted by the `$(PRODUCT_BUNDLE_IDENTIFIER).download.*`
-// entry of BGTaskSchedulerPermittedIdentifiers in Info.plist.
+// "<live bundle id>.download.<suffix>" — derived from the running bundle id
+// first, with the `$(PRODUCT_BUNDLE_IDENTIFIER).download.*` entry of
+// BGTaskSchedulerPermittedIdentifiers in Info.plist as a fallback. Continued
+// processing also requires the "processing" value in UIBackgroundModes.
 //
 // Earlier iOS, or when iOS refuses the request (for example a re-signed bundle
 // whose identifier no longer matches the permitted one): the usual short
@@ -56,7 +58,8 @@ import UserNotifications
     private var graceTask: UIBackgroundTaskIdentifier = .invalid
     private var continued: AnyObject?            // BGContinuedProcessingTask (iOS 26+)
     private var continuedPending = false
-    private var registered: String?
+    private var submittedAt: Date?               // when the pending submission was accepted
+    private var registered: Set<String> = []     // identifiers whose launch handler is registered
     private var observing = false
     private var askedNotifications = false
     private var logged = 0
@@ -70,11 +73,28 @@ import UserNotifications
 
     private var isBackground: Bool { UIApplication.shared.applicationState != .active }
 
-    /// The permitted "<bundle id>.download.*" identifier from Info.plist, made concrete.
-    private var taskIdentifier: String? {
+    /// Candidate identifiers for the continued-processing task, best first.
+    ///
+    /// The system requires the identifier to be prefixed with the app's
+    /// *live* bundle id. The Info.plist permitted list is expanded with the
+    /// build-time bundle id, which a re-signed (sideloaded) bundle can no
+    /// longer match, so the live id is tried first and the plist-derived one
+    /// is kept as a fallback.
+    private var candidateIdentifiers: [String] {
+        var candidates: [String] = []
+        if let live = Bundle.main.bundleIdentifier { candidates.append(live + ".download." + suffix) }
         let permitted = Bundle.main.object(forInfoDictionaryKey: "BGTaskSchedulerPermittedIdentifiers") as? [String] ?? []
-        guard let wildcard = permitted.first(where: { $0.hasSuffix(".download.*") }) else { return nil }
-        return String(wildcard.dropLast()) + suffix
+        if let wildcard = permitted.first(where: { $0.hasSuffix(".download.*") }) {
+            let fromPlist = String(wildcard.dropLast()) + suffix
+            if !candidates.contains(fromPlist) { candidates.append(fromPlist) }
+        }
+        return candidates
+    }
+
+    /// "live" when the identifier uses the running bundle id, "plist" otherwise.
+    private func identifierSource(_ identifier: String) -> String {
+        guard let live = Bundle.main.bundleIdentifier else { return "plist" }
+        return identifier.hasPrefix(live + ".") ? "live" : "plist"
     }
 
     /// Called once, when the library model starts.
@@ -145,30 +165,52 @@ import UserNotifications
 
     @available(iOS 26.0, *)
     private func submitContinued() {
-        guard continued == nil, !continuedPending, let identifier = taskIdentifier else { return }
-        if registered != identifier {
-            let ok = BGTaskScheduler.shared.register(forTaskWithIdentifier: identifier, using: .main) { [weak self] task in
-                guard let task = task as? BGContinuedProcessingTask else { task.setTaskCompleted(success: false); return }
-                MainActor.assumeIsolated { self?.attach(task) }
+        guard continued == nil else { return }
+        if continuedPending {
+            // Accepted earlier but never delivered: past a short wait, treat
+            // the request as lost so a running download can submit a fresh one.
+            guard let at = submittedAt, Date().timeIntervalSince(at) > 15 else { return }
+            log("continued-processing never delivered; submitting again")
+            continuedPending = false
+            submittedAt = nil
+        }
+        let candidates = candidateIdentifiers
+        guard !candidates.isEmpty else { log("no continued-processing identifier"); return }
+        for identifier in candidates {
+            let kind = identifierSource(identifier)
+            guard register(identifier) else { log("register refused id=\(kind)"); continue }
+            let request = BGContinuedProcessingTaskRequest(identifier: identifier, title: "Downloading \(currentName)",
+                                                           subtitle: "\(source) download in Madeira")
+            request.strategy = .fail
+            do {
+                try BGTaskScheduler.shared.submit(request)
+                continuedPending = true
+                submittedAt = Date()
+                log("continued-processing submitted id=\(kind)")
+                return
+            } catch {
+                log("continued-processing refused id=\(kind)")
             }
-            guard ok else { log("register refused id-suffix=\(suffix)"); return }
-            registered = identifier
         }
-        let request = BGContinuedProcessingTaskRequest(identifier: identifier, title: "Downloading \(currentName)",
-                                                       subtitle: "\(source) download in Madeira")
-        request.strategy = .fail
-        do {
-            try BGTaskScheduler.shared.submit(request)
-            continuedPending = true
-            log("continued-processing submitted")
-        } catch {
-            log("continued-processing refused")
+    }
+
+    /// Registers one launch handler per identifier. The system kills the app
+    /// on a second registration, so each identifier is registered once.
+    @available(iOS 26.0, *)
+    private func register(_ identifier: String) -> Bool {
+        if registered.contains(identifier) { return true }
+        let ok = BGTaskScheduler.shared.register(forTaskWithIdentifier: identifier, using: .main) { [weak self] task in
+            guard let task = task as? BGContinuedProcessingTask else { task.setTaskCompleted(success: false); return }
+            MainActor.assumeIsolated { self?.attach(task) }
         }
+        if ok { registered.insert(identifier) }
+        return ok
     }
 
     @available(iOS 26.0, *)
     private func attach(_ task: BGContinuedProcessingTask) {
         continuedPending = false
+        submittedAt = nil
         continued = task
         task.progress.totalUnitCount = 1
         task.expirationHandler = { [weak self] in
@@ -184,6 +226,8 @@ import UserNotifications
     }
 
     private func finishContinued(success: Bool) {
+        continuedPending = false          // an accepted-but-undelivered request must not block the next one
+        submittedAt = nil
         if #available(iOS 26.0, *), let task = continued as? BGContinuedProcessingTask {
             task.setTaskCompleted(success: success)
             log("continued-processing completed success=\(success ? 1 : 0)")

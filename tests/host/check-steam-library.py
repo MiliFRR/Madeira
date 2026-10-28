@@ -153,9 +153,11 @@ require('MadeiraConfig' not in sources['SteamOwnedLibrary.swift'] and 'SteamSign
 info = (app / 'Info.plist').read_text()
 permitted = re.findall(r'<key>BGTaskSchedulerPermittedIdentifiers</key>\s*<array>(.*?)</array>', info, re.S)
 require(len(permitted) == 1 and re.findall(r'<string>([^<]*)</string>', permitted[0])
-        == ['$(PRODUCT_BUNDLE_IDENTIFIER).download.*', '$(PRODUCT_BUNDLE_IDENTIFIER).pairing.*'],
-        "Info.plist permits only the bundle's own .download.* (background downloads) and .pairing.* (JIT pairing) tasks")
-require('UIBackgroundModes' not in info, 'Info.plist asks for no background mode')
+        == ['$(PRODUCT_BUNDLE_IDENTIFIER).download.*', '$(PRODUCT_BUNDLE_IDENTIFIER).pairing.*',
+            '$(PRODUCT_BUNDLE_IDENTIFIER).23ZSFW6HS9.download.*', '$(PRODUCT_BUNDLE_IDENTIFIER).23ZSFW6HS9.pairing.*'],
+        "Info.plist permits the bundle's own .download.*/.pairing.* tasks and the signing team's suffixed copies")
+require(re.search(r'<key>UIBackgroundModes</key>\s*<array>\s*<string>processing</string>\s*</array>', info) is not None,
+        'Info.plist declares the processing background mode required by continued processing')
 background = sources['SteamDownloadBackground.swift']
 require('hasSuffix(".download.*")' in background and '+ suffix' in background and 'suffix: String = "queue"' in background and 'BGContinuedProcessingTaskRequest(identifier: identifier' in background,
         'the continued-processing task uses the permitted identifier, made concrete')

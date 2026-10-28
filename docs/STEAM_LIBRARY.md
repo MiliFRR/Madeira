@@ -221,12 +221,17 @@ grace period, then pauses the same way. Local notifications report a download
 that finished, failed or paused while Madeira was in the background; the
 permission is asked for when the first download starts.
 
-This needs one `Info.plist` entry: `BGTaskSchedulerPermittedIdentifiers` with
-`$(PRODUCT_BUNDLE_IDENTIFIER).download.*`. The task identifier is
-`<bundle id>.download.queue`, read back from that entry at run time, so a
-re-signed bundle keeps working or falls back to the grace period. There is no
-`UIBackgroundModes` entry. (`app/Madeira/SteamDownloadBackground.swift`,
-ported from the fork, where it ran on the owner's devices.)
+This needs two `Info.plist` entries: `BGTaskSchedulerPermittedIdentifiers`
+with `$(PRODUCT_BUNDLE_IDENTIFIER).download.*`, and `UIBackgroundModes` with
+`processing` (iOS refuses a continued-processing request without that mode).
+The task identifier is `<live bundle id>.download.queue`, derived from the
+running bundle id first and from the permitted entry second, so a build whose
+identifier was suffixed or changed after signing still tries a matching
+candidate. The permitted list is expanded at build time: an install that
+changes the bundle id must also change the entry, or iOS cannot register the
+live identifier and Madeira falls back to the grace period.
+(`app/Madeira/SteamDownloadBackground.swift`, ported from the fork, where it
+ran on the owner's devices.)
 
 ## Switches
 

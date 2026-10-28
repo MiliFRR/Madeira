@@ -65,10 +65,12 @@ needed.
    **Enable JIT** as below.
 
 Madeira keeps running in the background while you are in Settings through an
-iOS continued-processing task (`<bundle id>.pairing.session`). If iOS refuses
-it, typically because the sideloader changed the bundle identifier, Madeira
-only gets the usual ~30 seconds in the background and says so; go to Settings
-straight away. A pairing that has not finished after five minutes is stopped.
+iOS continued-processing task (`<live bundle id>.pairing.session`, with the
+permitted Info.plist entry as a fallback). If iOS refuses it, typically because
+the sideloader changed the bundle identifier without changing the permitted
+entry, Madeira only gets the usual ~30 seconds in the background and says so;
+go to Settings straight away. A pairing that has not finished after five
+minutes is stopped.
 
 Every pairing makes a new host key. The identifier stays the same, so the
 iPhone replaces its earlier record for Madeira, and only the newest pairing

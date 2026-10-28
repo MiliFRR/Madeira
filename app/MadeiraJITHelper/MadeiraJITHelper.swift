@@ -45,7 +45,7 @@ private enum StikJIT {
 
 private enum MadeiraJITWork {
     /// One request at a time, as the XPC handler ran them before.
-    static let queue = DispatchQueue(label: "com.willfaust.madeora.jit-helper")
+    static let queue = DispatchQueue(label: "com.milifrr.madeira.jit-helper")
 
     static func handle(_ request: MadeiraJITRequest) -> MadeiraJITRequest.Response {
         let manager = FileManager.default

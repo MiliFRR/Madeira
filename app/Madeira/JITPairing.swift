@@ -69,7 +69,7 @@ import UserNotifications
     private var session: OpaquePointer?
     private var registration: DNSServiceRef?
     private var continued: AnyObject?            // BGContinuedProcessingTask (iOS 26+)
-    private var registered: String?
+    private var registered: Set<String> = []     // identifiers whose launch handler is registered
     private var grace: UIBackgroundTaskIdentifier = .invalid
     private var deadline: Timer?
 
@@ -229,11 +229,25 @@ import UserNotifications
 
     // MARK: Background
 
-    /// The permitted "<bundle id>.pairing.*" identifier from Info.plist, made concrete.
-    private var taskIdentifier: String? {
+    /// Candidate identifiers for the pairing continued-processing task, best
+    /// first: the live bundle id (the system requires that prefix, and a
+    /// re-signed sideloaded bundle changes it), then the Info.plist permitted
+    /// entry as a fallback.
+    private var candidateIdentifiers: [String] {
+        var candidates: [String] = []
+        if let live = Bundle.main.bundleIdentifier { candidates.append(live + ".pairing.session") }
         let permitted = Bundle.main.object(forInfoDictionaryKey: "BGTaskSchedulerPermittedIdentifiers") as? [String] ?? []
-        guard let wildcard = permitted.first(where: { $0.hasSuffix(".pairing.*") }) else { return nil }
-        return String(wildcard.dropLast()) + "session"
+        if let wildcard = permitted.first(where: { $0.hasSuffix(".pairing.*") }) {
+            let fromPlist = String(wildcard.dropLast()) + "session"
+            if !candidates.contains(fromPlist) { candidates.append(fromPlist) }
+        }
+        return candidates
+    }
+
+    /// "live" when the identifier uses the running bundle id, "plist" otherwise.
+    private func identifierSource(_ identifier: String) -> String {
+        guard let live = Bundle.main.bundleIdentifier else { return "plist" }
+        return identifier.hasPrefix(live + ".") ? "live" : "plist"
     }
 
     private func beginBackground() {
@@ -251,25 +265,30 @@ import UserNotifications
 
     @available(iOS 26.0, *)
     private func submitContinued() {
-        guard let identifier = taskIdentifier else { backgroundLimited = true; return }
-        if registered != identifier {
-            let ok = BGTaskScheduler.shared.register(forTaskWithIdentifier: identifier, using: .main) { task in
-                guard let task = task as? BGContinuedProcessingTask else { task.setTaskCompleted(success: false); return }
-                MainActor.assumeIsolated { OnDevicePairing.shared.attach(task) }
+        let candidates = candidateIdentifiers
+        guard !candidates.isEmpty else { backgroundLimited = true; return }
+        for identifier in candidates {
+            let kind = identifierSource(identifier)
+            if !registered.contains(identifier) {
+                let ok = BGTaskScheduler.shared.register(forTaskWithIdentifier: identifier, using: .main) { task in
+                    guard let task = task as? BGContinuedProcessingTask else { task.setTaskCompleted(success: false); return }
+                    MainActor.assumeIsolated { OnDevicePairing.shared.attach(task) }
+                }
+                guard ok else { log("register refused id=\(kind)"); continue }
+                registered.insert(identifier)
             }
-            guard ok else { log("register refused"); backgroundLimited = true; return }
-            registered = identifier
+            let request = BGContinuedProcessingTaskRequest(identifier: identifier, title: "Pairing with Madeira",
+                                                           subtitle: "Settings › Privacy & Security › Developer Mode")
+            request.strategy = .fail
+            do {
+                try BGTaskScheduler.shared.submit(request)
+                log("continued-processing submitted id=\(kind)")
+                return
+            } catch {
+                log("continued-processing refused id=\(kind)")
+            }
         }
-        let request = BGContinuedProcessingTaskRequest(identifier: identifier, title: "Pairing with Madeira",
-                                                       subtitle: "Settings › Privacy & Security › Developer Mode")
-        request.strategy = .fail
-        do {
-            try BGTaskScheduler.shared.submit(request)
-            log("continued-processing submitted")
-        } catch {
-            log("continued-processing refused")
-            backgroundLimited = true
-        }
+        backgroundLimited = true
     }
 
     @available(iOS 26.0, *)
