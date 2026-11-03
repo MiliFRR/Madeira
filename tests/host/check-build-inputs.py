@@ -17,8 +17,8 @@ assert workflow.count('key: ${{ steps.key.outputs.key }}\n    steps:') == 2
 assert workflow.count('key: plan19-${{ steps.sdk.outputs.key }}-${{ steps.key.outputs.key }}') == 2
 assert workflow.count('key: plan19-${{ steps.sdk.outputs.key }}-${{ needs.') == 2
 script = (root / 'tools/build/ci-input-key.sh').read_text()
-assert workflow.count('run: bash tools/build/ci-input-key.sh') == 5
-assert workflow.count('MADEIRA_PLANNED_SDK: ${{ needs.plan.outputs.sdk }}') == 4
+assert workflow.count('run: bash tools/build/ci-input-key.sh') == 7
+assert workflow.count('MADEIRA_PLANNED_SDK: ${{ needs.plan.outputs.sdk }}') == 6
 assert "'.github/workflows/build.yml')" not in workflow, 'workflow-only edits must not rebuild LLVM/FEX'
 assert 'toolchains/llvm-ios-build/.madeira-cache.sha256' in workflow
 assert 'toolchains/gnutls-ios' in workflow and 'build/gnutls-ios/obj/*.done' in workflow
@@ -125,6 +125,12 @@ with tempfile.TemporaryDirectory(prefix='madeira-build-inputs-') as folder:
     dist.mkdir()
     ipa = dist / 'Madeira.ipa'
     def valid_ipa():
+        # The reuse job validates the IPA from the repo root (dist/ and tools/
+        # both live there). Mirror that layout in the fixture folder so the
+        # relative paths in the validation step resolve.
+        (folder / 'tools' / 'build').mkdir(parents=True, exist_ok=True)
+        shutil.copy(root / 'tools' / 'build' / 'runtime-components.py',
+                    folder / 'tools' / 'build' / 'runtime-components.py')
         return subprocess.run(['bash', '-euo', 'pipefail', '-c', validation], cwd=folder,
                               capture_output=True).returncode == 0
     with zipfile.ZipFile(ipa, 'w') as archive:
