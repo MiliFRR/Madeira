@@ -33,6 +33,10 @@
 		A1000E03 /* SwiftEpic/EpicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000E03 /* EpicAPI.swift */; };
 		A1000E04 /* SwiftEpic/EpicFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000E04 /* EpicFormats.swift */; };
 		A1000E05 /* SwiftEpic/EpicDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000E05 /* EpicDownloader.swift */; };
+		A1000J01 /* SwiftGameJolt/GameJoltAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000J01 /* GameJoltAPI.swift */; };
+		A1000J02 /* GameJoltLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000J02 /* GameJoltLibrary.swift */; };
+		A1000J03 /* GameJoltGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000J03 /* GameJoltGames.swift */; };
+		A1000J04 /* SteamAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000J04 /* SteamAchievements.swift */; };
 		A1000602 /* SteamDownloadBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000602 /* SteamDownloadBackground.swift */; };
 		A1000600 /* SteamInstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000600 /* SteamInstall.swift */; };
 		A1000609 /* SwiftSteam/Content/ContentDecryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000609 /* ContentDecryptor.swift */; };
@@ -247,6 +251,10 @@
 		A2000E04 /* EpicFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftEpic/EpicFormats.swift"; sourceTree = "<group>"; };
 		A2000E05 /* EpicDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftEpic/EpicDownloader.swift"; sourceTree = "<group>"; };
 		A2000602 /* SteamDownloadBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SteamDownloadBackground.swift"; sourceTree = "<group>"; };
+		A2000J01 /* GameJoltAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftGameJolt/GameJoltAPI.swift"; sourceTree = "<group>"; };
+		A2000J02 /* GameJoltLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameJoltLibrary.swift"; sourceTree = "<group>"; };
+		A2000J03 /* GameJoltGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameJoltGames.swift"; sourceTree = "<group>"; };
+		A2000J04 /* SteamAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SteamAchievements.swift"; sourceTree = "<group>"; };
 		A2000600 /* SteamInstall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SteamInstall.swift"; sourceTree = "<group>"; };
 		A2000609 /* ContentDecryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftSteam/Content/ContentDecryptor.swift"; sourceTree = "<group>"; };
 		A200060A /* DepotDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftSteam/Content/DepotDownloader.swift"; sourceTree = "<group>"; };
@@ -506,6 +514,10 @@
 				A2000E03 /* EpicAPI.swift */,
 				A2000E04 /* EpicFormats.swift */,
 				A2000E05 /* EpicDownloader.swift */,
+			A2000J01 /* GameJoltAPI.swift */,
+			A2000J02 /* GameJoltLibrary.swift */,
+			A2000J03 /* GameJoltGames.swift */,
+			A2000J04 /* SteamAchievements.swift */,
 				A2000E07 /* EpicCloudSaves.swift */,
 				A2000E06 /* EpicCloud.swift */,
 				A2000602 /* SteamDownloadBackground.swift */,
@@ -883,6 +895,10 @@
 				A1000E03 /* SwiftEpic/EpicAPI.swift in Sources */,
 				A1000E04 /* SwiftEpic/EpicFormats.swift in Sources */,
 				A1000E05 /* SwiftEpic/EpicDownloader.swift in Sources */,
+			A1000J01 /* SwiftGameJolt/GameJoltAPI.swift in Sources */,
+			A1000J02 /* GameJoltLibrary.swift in Sources */,
+			A1000J03 /* GameJoltGames.swift in Sources */,
+			A1000J04 /* SteamAchievements.swift in Sources */,
 				A1000E07 /* EpicCloudSaves.swift in Sources */,
 				A1000E06 /* EpicCloud.swift in Sources */,
 				A1000602 /* SteamDownloadBackground.swift in Sources */,

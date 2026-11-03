@@ -281,6 +281,11 @@ struct LibraryEntry: Codable, Identifiable {
     /// its program inside C:\Program Files\Epic Games, and each start adds Epic's
     /// sign-in arguments (EpicLibrary.launchArguments) for that launch only.
     var epicAppName: String?
+    /// A Game Jolt game (GameJoltLibrary.swift): its game ID. `relativePath` is then
+    /// its program inside C:\Program Files\GameJolt\Games, and each start adds
+    /// Game Jolt's sign-in arguments (GameJoltLibrary.launchArguments) for that launch
+    /// only. Stored as a string so older library files decode it as nil.
+    var gamejoltAppName: String?
     /// An Epic game with an official way to start without anti-cheat
     /// (epicAntiCheatOffProgram): nil or true starts that program.
     /// The anti-cheat cannot run in Wine on iOS, so on is the default.
@@ -3173,6 +3178,11 @@ struct LibraryView: View {
                 if EpicLibrary.enabled {
                     EpicGamesSection(search: search, layout: layout, width: viewport.size.width, open: { selected = $0 })
                 }
+                // The account's Game Jolt games (GameJoltGames.swift): installed ones open their
+                // Game details page, the others their download sheet, and a one-use sign-in code signs in.
+                if GameJoltLibrary.enabled {
+                    GameJoltGamesSection(search: search, layout: layout, width: viewport.size.width, open: { selected = $0 })
+                }
                 }
             }
             // Ambient light behind the grid cards, in the content's own space so it scrolls with them.
@@ -3200,6 +3210,7 @@ struct LibraryView: View {
         .onAppear {
             if focused == nil { focused = LibraryEntry.desktopID }
             GlassSkin.shared.start()   // liquid metal on the navigation bar's glass pills
+            GameJoltLibrary.shared.start()   // signs in, loads the Game Jolt library and its background-download handler
         }
         .onChange(of: focused) { _, id in
             if let id { withAnimation(UIAccessibility.isReduceMotionEnabled ? nil : .easeInOut(duration: 0.2)) { reader.scrollTo(id, anchor: .center) } }
@@ -3260,6 +3271,7 @@ struct LibraryView: View {
         .onAppear {
             if focused == nil { focused = LibraryEntry.desktopID }
             GlassSkin.shared.start()
+            GameJoltLibrary.shared.start()
         }
     }
     private func cells(_ items: [LibraryEntry], width viewportWidth: CGFloat) -> some View {
