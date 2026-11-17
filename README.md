@@ -72,7 +72,8 @@ Because JIT needs a debugger, Madeira cannot be offered on the App Store.
 
 ## Installing
 
-1. Download the IPA from the [latest release](https://github.com/willfaust/Madeira/releases).
+1. Easiest: install with FlekStore: https://flekstore.com/madeira. Or download the IPA from the
+   [latest release](https://github.com/willfaust/Madeira/releases) and sideload it (step 2).
 2. Sideload it with your own Apple ID using SideStore, AltStore, Sideloadly,
    Plume or a similar tool.
 3. Open Madeira and enable JIT. Automatic mode uses StikDebug when installed,
