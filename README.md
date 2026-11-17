@@ -1,7 +1,5 @@
 **Install with FlekStore:** https://flekstore.com/madeira
 
-**First-timer guides:** [Madeira guides](docs/guides/README.md)
-
 **Support me:** [Buy Me a Coffee](https://buymeacoffee.com/camhawk)
 
 ---
