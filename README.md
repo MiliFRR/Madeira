@@ -1,3 +1,9 @@
+**Install with FlekStore:** https://flekstore.com/madeira
+
+**Support me:** [Buy Me a Coffee](https://buymeacoffee.com/camhawk)
+
+---
+
 <p align="center">
   <img src="docs/assets/banner.png" alt="Madeira — Bringing PC gaming to your iPhone." width="100%">
 </p>
