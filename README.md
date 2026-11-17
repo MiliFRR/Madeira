@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://discord.gg/4t5mNjwCn7"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscord.com%2Fapi%2Finvites%2F4t5mNjwCn7%3Fwith_counts%3Dtrue&query=%24.approximate_member_count&suffix=%20members&label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge" alt="Join the Madeira Discord"></a>
   &nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/camhoc/Madeira/releases"><img src="https://img.shields.io/github/v/release/willfaust/Madeira?label=Release&style=for-the-badge&color=brightgreen" alt="Latest release"></a>
+  <a href="https://github.com/camhoc/Madeira/releases"><img src="https://img.shields.io/github/v/release/camhoc/Madeira?label=Release&style=for-the-badge&color=brightgreen" alt="Latest release"></a>
   &nbsp;&nbsp;&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0--or--later-yellow?style=for-the-badge" alt="License: GPL-3.0-or-later"></a>
 </p>
