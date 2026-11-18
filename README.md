@@ -1,5 +1,3 @@
-**Install with FlekStore:** https://flekstore.com/madeira
-
 **First-timer guides:** [Madeira guides](docs/guides/README.md)
 
 **Support me:** [Buy Me a Coffee](https://buymeacoffee.com/camhawk)
@@ -74,7 +72,7 @@ Because JIT needs a debugger, Madeira cannot be offered on the App Store.
 
 ## Installing
 
-1. Easiest: install with FlekStore: https://flekstore.com/madeira. Or download the IPA from the
+1. Download the IPA from the
    [latest release](https://github.com/camhoc/Madeira/releases) and sideload it (step 2).
 2. Sideload it with your own Apple ID using SideStore, AltStore, Sideloadly,
    Plume or a similar tool.

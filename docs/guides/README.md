@@ -24,4 +24,4 @@ One picture (PNG) and one HTML page per topic. Open the PNG to read the guide he
 12. [12-controllers-and-touch-controls](12-controllers-and-touch-controls.png) ([html](12-controllers-and-touch-controls.html))
 13. [13-storage-and-external-drives](13-storage-and-external-drives.png) ([html](13-storage-and-external-drives.html))
 
-Not yet covered: Steam Cloud saves, Mods, Japanese text, FlekStore certificate help.
+Not yet covered: Steam Cloud saves, Mods, Japanese text.
