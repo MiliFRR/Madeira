@@ -1,0 +1,44 @@
+{
+  "name": "Madeira Nightly",
+  "identifier": "com.willfaust.madeora.nightly",
+  "subtitle": "Nightly builds of Madeira",
+  "description": "Nightly test builds of Madeira. Each build's full source code is attached to its GitHub release.",
+  "website": "https://github.com/camhoc/Madeira",
+  "iconURL": "https://raw.githubusercontent.com/camhoc/Madeira/main/app/Madeira/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+  "tintColor": "#E8772E",
+  "apps": [
+    {
+      "name": "Madeira",
+      "bundleIdentifier": "com.willfaust.madeora",
+      "developerName": "camhawk",
+      "subtitle": "Windows games on iPhone and iPad",
+      "localizedDescription": "Nightly test build of Madeira. Source code for each build: github.com/camhoc/Madeira/releases",
+      "iconURL": "https://raw.githubusercontent.com/camhoc/Madeira/main/app/Madeira/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+      "tintColor": "#E8772E",
+      "version": "0.2.0",
+      "buildVersion": "173",
+      "versionDate": "2026-11-23",
+      "versionDescription": "Madeira Nightly 0.2.95",
+      "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.95-og/Madeira.Nightly.0.2.95.og.ipa",
+      "size": 231642820,
+      "minOSVersion": "18.0",
+      "versions": [
+        {
+          "version": "0.2.0",
+          "buildVersion": "173",
+          "date": "2026-11-23",
+          "localizedDescription": "Madeira Nightly 0.2.95. Source: https://github.com/camhoc/Madeira/releases/tag/0.2.95-og",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.95-og/Madeira.Nightly.0.2.95.og.ipa",
+          "size": 231642820,
+          "minOSVersion": "18.0"
+        }
+      ],
+      "screenshotURLs": [],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      }
+    }
+  ],
+  "news": []
+}
