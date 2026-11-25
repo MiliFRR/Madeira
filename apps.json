@@ -16,13 +16,22 @@
       "iconURL": "https://raw.githubusercontent.com/camhoc/Madeira/main/app/Madeira/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
       "tintColor": "#E8772E",
       "version": "0.2.0",
-      "buildVersion": "173",
-      "versionDate": "2026-11-23",
-      "versionDescription": "Madeira Nightly 0.2.95",
-      "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.95-og/Madeira.Nightly.0.2.95.og.ipa",
-      "size": 231642820,
+      "buildVersion": "178",
+      "versionDate": "2026-11-24",
+      "versionDescription": "Madeira Nightly 0.2.100",
+      "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.100-og/Madeira.Nightly.0.2.100.og.ipa",
+      "size": 234045666,
       "minOSVersion": "18.0",
       "versions": [
+        {
+          "version": "0.2.0",
+          "buildVersion": "178",
+          "date": "2026-11-24",
+          "localizedDescription": "Madeira Nightly 0.2.100. Source: https://github.com/camhoc/Madeira/releases/tag/0.2.100-og",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.100-og/Madeira.Nightly.0.2.100.og.ipa",
+          "size": 234045666,
+          "minOSVersion": "18.0"
+        },
         {
           "version": "0.2.0",
           "buildVersion": "173",
@@ -40,5 +49,16 @@
       }
     }
   ],
-  "news": []
+  "news": [
+    {
+      "title": "Madeira Nightly 0.2.100",
+      "identifier": "nightly-0.2.100",
+      "caption": "New: more of Apple's standard look, no double highlight with controllers on iPad, faster DX12 starts (KosmicKrisp shader cache), Steam launch arguments, finger camera follows sensitivity in Relative mode, better tap-to-click. Raft reaches its menu, L4D2 start fix, Batman reaches the title screen. Known: BG3 and BO3 still close early. Please send a log with Get Help if something breaks.",
+      "date": "2026-11-24",
+      "tintColor": "#E8772E",
+      "url": "https://github.com/camhoc/Madeira/releases/tag/0.2.100-og",
+      "appID": "com.willfaust.madeora",
+      "notify": true
+    }
+  ]
 }
