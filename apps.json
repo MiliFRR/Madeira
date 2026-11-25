@@ -15,21 +15,21 @@
       "localizedDescription": "Windows games on iPhone and iPad. Nightly test build; source code for each build: github.com/camhoc/Madeira/releases",
       "iconURL": "https://raw.githubusercontent.com/camhoc/Madeira/main/app/Madeira/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
       "tintColor": "#E8772E",
-      "version": "0.2.100",
-      "buildVersion": "178",
+      "version": "0.2.101",
+      "buildVersion": "179",
       "versionDate": "2026-11-24",
-      "versionDescription": "Madeira Nightly 0.2.100\nEverything since 0.2.95. Test build: send a log with Get Help for anything that breaks.\n\nNew\n- More screens use Apple's standard look (start screen, store pages, the Did it work card, Get Help, first-time setup)\n- Controllers on iPad: no second blue highlight on menus\n- DX12 games: newer KosmicKrisp (Mesa 26.3.1), compiled shaders are saved so later launches start faster\n- Steam: the Launch arguments field now works for The game\n- Touch camera: in Relative pointer mode the finger camera follows your sensitivity\n- Mouse lock on iPad keeps asking again if iPadOS says no\n- Tap to click: better timing for taps and tap and hold\n- Game Dock finds PhysX and other installers in every Steam library, including external drives\n\nGame fixes\n- Raft reaches the main menu\n- Left 4 Dead 2 start fix\n- Baldur's Gate 3 launcher: memory and .NET fixes (still closes after about 11 s)\n- Batman Arkham games reach the title screen with PhysX\n- Black Ops 3 and Overwatch 2: more logging to find their crashes\n\nKnown issues\n- Baldur's Gate 3 and Black Ops 3 still close early\n- Some games need a short hold instead of a quick tap to click",
-      "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.100-og/Madeira.Nightly.0.2.100.og.ipa",
-      "size": 234045664,
+      "versionDescription": "Madeira Nightly 0.2.101\nEverything since 0.2.100. Test build: send a log with Get Help for anything that breaks.\n\n- Controller: claims controller input again if the first try at app start was too early\n- Touch mode: a tap moves the pointer first, then clicks\n- Left 4 Dead 2: downloaded Workshop add-ons are copied where the game looks for them\n- Madeira Dock: games with no .exe launch option use the best non-beta Windows option\n- Touch controls: a stick zone can move the mouse\n- Touch controls: a stick zone can hold an extra action when pushed far\n- Gyro aim: more activation buttons and an on-screen Gyro button\n- Touch controls: buttons can latch and press a second key\n- Touch controls: button opacity and colour\n- Fix for the Visual C++ installer failing in some Unreal games\n- Baldur's Gate 3 launcher: room for the fourth Chromium memory pool\n\nNot yet device-tested.",
+      "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.101-og/Madeira.Nightly.0.2.101.og.ipa",
+      "size": 234182560,
       "minOSVersion": "18.0",
       "versions": [
         {
-          "version": "0.2.100",
-          "buildVersion": "178",
+          "version": "0.2.101",
+          "buildVersion": "179",
           "date": "2026-11-24",
-          "localizedDescription": "Madeira Nightly 0.2.100\nEverything since 0.2.95. Test build: send a log with Get Help for anything that breaks.\n\nNew\n- More screens use Apple's standard look (start screen, store pages, the Did it work card, Get Help, first-time setup)\n- Controllers on iPad: no second blue highlight on menus\n- DX12 games: newer KosmicKrisp (Mesa 26.3.1), compiled shaders are saved so later launches start faster\n- Steam: the Launch arguments field now works for The game\n- Touch camera: in Relative pointer mode the finger camera follows your sensitivity\n- Mouse lock on iPad keeps asking again if iPadOS says no\n- Tap to click: better timing for taps and tap and hold\n- Game Dock finds PhysX and other installers in every Steam library, including external drives\n\nGame fixes\n- Raft reaches the main menu\n- Left 4 Dead 2 start fix\n- Baldur's Gate 3 launcher: memory and .NET fixes (still closes after about 11 s)\n- Batman Arkham games reach the title screen with PhysX\n- Black Ops 3 and Overwatch 2: more logging to find their crashes\n\nKnown issues\n- Baldur's Gate 3 and Black Ops 3 still close early\n- Some games need a short hold instead of a quick tap to click",
-          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.100-og/Madeira.Nightly.0.2.100.og.ipa",
-          "size": 234045664,
+          "localizedDescription": "Madeira Nightly 0.2.101\nEverything since 0.2.100. Test build: send a log with Get Help for anything that breaks.\n\n- Controller: claims controller input again if the first try at app start was too early\n- Touch mode: a tap moves the pointer first, then clicks\n- Left 4 Dead 2: downloaded Workshop add-ons are copied where the game looks for them\n- Madeira Dock: games with no .exe launch option use the best non-beta Windows option\n- Touch controls: a stick zone can move the mouse\n- Touch controls: a stick zone can hold an extra action when pushed far\n- Gyro aim: more activation buttons and an on-screen Gyro button\n- Touch controls: buttons can latch and press a second key\n- Touch controls: button opacity and colour\n- Fix for the Visual C++ installer failing in some Unreal games\n- Baldur's Gate 3 launcher: room for the fourth Chromium memory pool\n\nNot yet device-tested.",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.101-og/Madeira.Nightly.0.2.101.og.ipa",
+          "size": 234182560,
           "minOSVersion": "18.0"
         }
       ],
@@ -41,6 +41,16 @@
     }
   ],
   "news": [
+    {
+      "title": "Madeira Nightly 0.2.101",
+      "identifier": "nightly-0.2.101",
+      "caption": "New: touch stick zones can move the mouse and hold an extra action, latching buttons, button opacity and colour, more gyro buttons. Fixes for taps, controller start-up, Left 4 Dead 2 Workshop add-ons, Madeira Dock launch options and the Visual C++ installer in some Unreal games. Not yet device-tested: please send a log with Get Help if something breaks.",
+      "date": "2026-11-24",
+      "tintColor": "#E8772E",
+      "url": "https://github.com/camhoc/Madeira/releases/tag/0.2.101-og",
+      "appID": "com.willfaust.madeora",
+      "notify": true
+    },
     {
       "title": "Madeira Nightly 0.2.100",
       "identifier": "nightly-0.2.100",
