@@ -42,21 +42,21 @@
           "minOSVersion": "18.0"
         },
         {
-          "version": "0.2.0",
+          "version": "0.2.95",
           "buildVersion": "173",
           "date": "2026-11-23",
           "localizedDescription": "Madeira Nightly 0.2.95 (build 173)\nA nightly build for testers.\n\nContains code ported from MetalSharp (AGPL-3.0) by BOR1NG (Avery Felts), code from MetalSharp-Wine (LGPL-2.1) and MetalSharp's FEX patches (MIT), and from Mullion (LGPL-2.1-or-later). Full source for this build is on its release page.",
           "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.95-og/Madeira.Nightly.0.2.95.og.ipa",
-          "size": 231642820,
+          "size": 231642818,
           "minOSVersion": "18.0"
         },
         {
-          "version": "0.2.0",
+          "version": "0.2.72",
           "buildVersion": "150",
           "date": "2026-11-21",
           "localizedDescription": "Madeira Nightly 0.2.72 (build 150)\nEverything big since 0.2.32.\n\n- Wine 11.22, plus newer FEX and DXMT\n- DirectX 12 games start and show a picture again\n- Resident Evil Village plays full screen with its videos (use Wi-Fi)\n- Slay the Spire 2 black screen fixed\n- Deep Rock Galactic runs great on DX11 (DX12 doesn't start yet)\n- LEGO Star Wars: The Complete Saga draws its world again\n- Battle.net launcher opens again\n- DirectX badge and Console look\n\nKnown: Overwatch 2 and Black Ops III don't get in game yet.",
           "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.72-og/Madeira.Nightly.0.2.72.ipa",
-          "size": 226957948,
+          "size": 226957947,
           "minOSVersion": "18.0"
         }
       ],
