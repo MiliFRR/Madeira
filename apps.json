@@ -31,6 +31,33 @@
           "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.101-og/Madeira.Nightly.0.2.101.og.ipa",
           "size": 234182560,
           "minOSVersion": "18.0"
+        },
+        {
+          "version": "0.2.100",
+          "buildVersion": "178",
+          "date": "2026-11-24",
+          "localizedDescription": "Madeira Nightly 0.2.100\nEverything since 0.2.95. Test build: send a log with Get Help for anything that breaks.\n\n- New look: more screens use Apple's standard style\n- Controllers on iPad: no more second (blue) highlight on menus\n- DX12 games: newer KosmicKrisp, and compiled shaders are saved, so later launches start faster\n- Steam: the Launch arguments field now works when \"The game\" is picked\n- Touch camera: in Relative mode, finger camera follows your sensitivity setting\n- Mouse lock (iPad): keeps asking again if iPadOS says no at first\n- Tap to click: better timing for taps and tap-and-hold\n- Game Dock: finds PhysX and other installers in every Steam library\n- Raft reaches the main menu\n- Left 4 Dead 2 start fix\n- Batman: Arkham games reach the title screen with PhysX\n\nKnown: Baldur's Gate 3 and Black Ops 3 still close early.",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.100-og/Madeira.Nightly.0.2.100.og.ipa",
+          "size": 234045664,
+          "minOSVersion": "18.0"
+        },
+        {
+          "version": "0.2.0",
+          "buildVersion": "173",
+          "date": "2026-11-23",
+          "localizedDescription": "Madeira Nightly 0.2.95 (build 173)\nA nightly build for testers.\n\nContains code ported from MetalSharp (AGPL-3.0) by BOR1NG (Avery Felts), code from MetalSharp-Wine (LGPL-2.1) and MetalSharp's FEX patches (MIT), and from Mullion (LGPL-2.1-or-later). Full source for this build is on its release page.",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.95-og/Madeira.Nightly.0.2.95.og.ipa",
+          "size": 231642820,
+          "minOSVersion": "18.0"
+        },
+        {
+          "version": "0.2.0",
+          "buildVersion": "150",
+          "date": "2026-11-21",
+          "localizedDescription": "Madeira Nightly 0.2.72 (build 150)\nEverything big since 0.2.32.\n\n- Wine 11.22, plus newer FEX and DXMT\n- DirectX 12 games start and show a picture again\n- Resident Evil Village plays full screen with its videos (use Wi-Fi)\n- Slay the Spire 2 black screen fixed\n- Deep Rock Galactic runs great on DX11 (DX12 doesn't start yet)\n- LEGO Star Wars: The Complete Saga draws its world again\n- Battle.net launcher opens again\n- DirectX badge and Console look\n\nKnown: Overwatch 2 and Black Ops III don't get in game yet.",
+          "downloadURL": "https://github.com/camhoc/Madeira/releases/download/0.2.72-og/Madeira.Nightly.0.2.72.ipa",
+          "size": 226957948,
+          "minOSVersion": "18.0"
         }
       ],
       "screenshotURLs": [],
@@ -47,6 +74,7 @@
       "caption": "New: touch stick zones can move the mouse and hold an extra action, latching buttons, button opacity and colour, more gyro buttons. Fixes for taps, controller start-up, Left 4 Dead 2 Workshop add-ons, Madeira Dock launch options and the Visual C++ installer in some Unreal games. Not yet device-tested: please send a log with Get Help if something breaks.",
       "date": "2026-11-24",
       "tintColor": "#E8772E",
+      "imageURL": "https://raw.githubusercontent.com/camhoc/Madeira/main/news/news-card.png",
       "url": "https://github.com/camhoc/Madeira/releases/tag/0.2.101-og",
       "appID": "com.willfaust.madeora",
       "notify": true
@@ -57,6 +85,7 @@
       "caption": "New: more of Apple's standard look, no double highlight with controllers on iPad, faster DX12 starts (KosmicKrisp shader cache), Steam launch arguments, finger camera follows sensitivity in Relative mode, better tap-to-click. Raft reaches its menu, L4D2 start fix, Batman reaches the title screen. Known: BG3 and BO3 still close early. Please send a log with Get Help if something breaks.",
       "date": "2026-11-24",
       "tintColor": "#E8772E",
+      "imageURL": "https://raw.githubusercontent.com/camhoc/Madeira/main/news/news-card.png",
       "url": "https://github.com/camhoc/Madeira/releases/tag/0.2.100-og",
       "appID": "com.willfaust.madeora",
       "notify": true
