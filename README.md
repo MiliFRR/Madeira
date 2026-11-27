@@ -1,6 +1,7 @@
 <a href="https://flekstore.com/madeira"><img src="docs/assets/install-flekstore.png" alt="Install from FlekSt0re" height="56"></a>
 
 **Need help installing or setting up JIT? Use FlekStore:** <https://flekstore.com/madeira>
+With FlekStore you don't need to refresh every 7 days: it lasts a year.
 
 **First-timer guides:** [Madeira guides](docs/guides/README.md)
 
