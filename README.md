@@ -1,3 +1,5 @@
+<a href="https://flekstore.com/madeira"><img src="docs/assets/install-flekstore.png" alt="Install from FlekSt0re" height="56"></a>
+
 **Need help installing or setting up JIT? Use FlekStore:** <https://flekstore.com/madeira>
 
 **First-timer guides:** [Madeira guides](docs/guides/README.md)
